@@ -1,0 +1,484 @@
+
+body, div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd, img, form, fieldset, input, textarea, blockquote {
+    font-family: Montserrat;
+	margin: 0; padding: 0; border: 0;
+}
+
+@font-face {
+    font-family: Abeezee;
+    src: url(fonts/Abeezee/abeezee-regular.ttf);
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url(fonts/Montserrat/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-Bold;
+    src: url(fonts/Montserrat/Montserrat-Bold.ttf);
+}
+
+body {
+    background: #EEEEEE;
+}
+
+footer {
+    width: 1366px;
+    background: #C7C9BE;
+    height: 60px;
+    color: #42433F;
+    margin: 0 auto;
+    text-align: center;
+    border-top: 1px solid #929487;
+}
+
+header {
+    vertical-align: top;
+    width: 1366px;
+    background: #C7C9BE;
+    height: 50px;
+    margin: 0 auto;
+    border-bottom: 1px solid #929487;
+}
+
+    .headerCenter {
+        text-align: left;
+        width: 1366px;
+        margin: 0 auto;
+    }
+
+    #logo {
+        vertical-align: top;
+        display: inline-block;
+        height: 100%;
+        width: auto;
+        margin-left: 100px;
+    }
+
+    .logoLink {
+        text-decoration: none;
+        margin-top: 6px;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    
+    .logoLink a {
+        font-family: Abeezee;
+        color: #42433F;
+        text-decoration: none;
+    }
+
+    .logoLink a:hover {
+        color: #929487;
+    }
+
+    #menu {
+        vertical-align: top;
+        display: inline-block;
+        width: 425px;
+        height: 100%;
+        margin-left: 53px;
+    }
+
+    .search {
+        vertical-align: top;
+        display: inline-block;
+        margin-left: 20px;
+        margin-top: 13px;
+        width: auto;
+    }
+
+
+
+    input.searchLine {
+        border: 1px solid;
+        border-radius: 30px;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    #profileHeader {
+        vertical-align: top;
+        display: inline-block;
+        height: auto;
+        width: 250px;
+        margin-top: 6px;
+/*        margin-bottom: 20px;*/
+/*        padding: 16px 20px 35px 20px;*/
+        font-size: 14px;
+        margin-left: 100px;
+/*
+        background-color: #FFFBED;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border: 1px solid;
+*/
+    }
+
+        #profileHeaderText {
+            display: inline-block;
+            width: 166px;
+        }
+
+    .buttons {
+        vertical-align: top;
+        display: inline-block;
+        width: auto;
+        margin-top: 10px;
+        font-size: 14px;
+        margin-left: 200px;
+        text-align: center;
+     }
+
+#content {
+    top: 150px;
+    margin: 0 auto;
+    width: 1366px;
+    font-size: 18px;
+}
+
+    #leftBar {
+        vertical-align: top;
+        display: inline-block;
+        margin-left: 25px;
+        width: 250px; 
+        height: 485px;
+        padding: 15px 20px 35px 20px; 
+        background: #A3B6C5;
+    }
+
+        #leftBar button.list {
+            width: 100%;
+            text-align: center;
+        }
+
+        .searchText {
+            vertical-align: top;
+            display: inline-block;
+            width: 80px;
+            line-height: 1.5em;
+        }
+
+        .searchInput {
+            vertical-align: top;
+            display: inline-block;
+            width: auto;
+        }
+
+        .searchInput input {
+            width: 165px;
+        }
+
+        #managerContainer {
+            vertical-align: top;
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+        }
+
+        #managerLeft {
+            vertical-align: top;
+            display: inline-block;
+            height: 20px;
+            width: 85%;
+            margin-bottom: 20px;
+            padding: 16px 10px 35px 20px;
+            font-size: 14px;
+            background: #C7C9BE;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            border: 1px solid #42433F;
+        }
+
+            #managerLeft .shopPhoto {
+                vertical-align: top;
+                display: inline-block;
+                height: 40px;
+                width: 40px;
+            }
+
+            #managerLeft .shopText {
+                vertical-align: top;
+                display: inline-block;
+                height: 40px;
+                width: 168px;
+            }
+
+    #centralBar {
+        vertical-align: top;
+        display: inline-block;
+        margin-left: 20px;
+        margin-right: 20px;
+        width: 640px; 
+        height: auto;
+        padding: 15px 20px 35px 20px;
+/*
+        background: #FFFBED;
+        border-radius: 15px;
+*/
+/*        border: 1px solid;*/
+        text-align: left;
+    }
+
+        #profileImage {
+            height: 150px;
+            width: 150px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        #profileText {
+            width: auto;
+            height: auto;
+            margin-top: -150px;
+            margin-left: 160px;
+        }
+
+            #profileTextKey {
+                width: 120px;
+                height: auto;
+                display: inline-block;
+                vertical-align: top;
+            }
+
+            #profileTextValue {
+                width: 280px;
+                display: inline-block;
+                vertical-align: top;
+            }
+
+            #profileMenu {;
+                width: 55px;
+                height: auto;
+                vertical-align: top;
+                display: inline-block;
+                text-align: center;
+            }
+
+        #shop {
+            vertical-align: top;
+            margin-left: 20px;
+            margin-top: 20px;
+            width: 560px;
+            height: auto;
+            padding: 15px 20px 35px 20px;
+            display: inline-block;
+            background: #C7C9BE;
+            border-radius: 20px;
+            border: 2px solid #42433F;
+        }
+
+        #shopText {
+            width: 400px;
+            display: inline-block;
+            vertical-align: top;
+            text-align: justify;
+        }
+
+        #shopImage {
+            float: right;
+            height: 130px;
+            width: 130px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+    #rightBar {
+        vertical-align: top;
+        display: inline-block;
+        width: 250px; 
+        height: 385px;
+        padding: 15px 20px 35px 20px;
+        text-align: left;
+/*
+        background-color: #FFFBED;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border: 1px solid;
+*/
+    }
+
+        .listOfFriends {
+            vertical-align: top;
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+        }
+
+        #shopContainer {
+            vertical-align: top;
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+        }
+
+            #shopRight {
+                vertical-align: top;
+                display: inline-block;
+                height: 20px;
+                width: 85%;
+                margin-bottom: 20px;
+                padding: 16px 10px 35px 20px;
+                font-size: 14px;
+                background: #C7C9BE;
+                border-top-left-radius: 15px;
+                border-bottom-left-radius: 15px;
+                border: 1px solid #42433F;
+            }
+
+                #shopRight .shopPhoto {
+                    vertical-align: top;
+                    display: inline-block;
+                    height: 40px;
+                    width: 40px;
+                }
+
+                #shopRight .shopText {
+                    vertical-align: top;
+                    display: inline-block;
+                    height: 40px;
+                    width: 168px;
+                }
+
+a.shopRightName {
+    font-size: 20px;
+    color: #42433F;
+}
+
+p.smallText {
+     font-size: 12px;
+ }
+
+p.middleText {
+    font-style: italic;
+    font-size: 16px;
+}
+
+a {
+    color: #42433F;
+}
+
+h2 {
+/*    color: #42433F;*/
+    text-shadow: 0 1px 3px #c4bda6;
+	font-size: 25px;
+}
+
+h3 {
+/*    color: #42433F;*/
+}
+
+input {
+    font-size: 16px;
+    border: 1px dotted;
+    margin-bottom: 7px;
+}
+
+input.rating {
+    width: 20px;
+    text-align: center;
+    margin-left: 5px;
+}
+
+input.photo {
+    border: 1px dotted;
+    margin-bottom: 7px;
+}
+
+button {
+    vertical-align: top;
+    display: inline-block;
+    font-size: 13px;
+    font-family: Montserrat-Bold;
+    margin-bottom: 7px;
+    color: #42433F;
+    padding: 5px;
+    background-color: #C7C9BE;
+    border: 1px solid #929487;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button.imageButton {
+    background: #C7C9BE; 
+    width: auto;
+    height: auto;
+    padding: 0;
+    border: 3px solid #42433F;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.searchButton {
+    background: #C7C9BE;
+    width: auto;
+    height: auto;
+    padding: 0;
+    border: 1px solid #42433F;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+button.imageButton:hover {
+    background-color: #42433F;
+}
+
+#dropList {
+    
+}
+
+#dropList li {
+/*    display: inline-block;*/
+    vertical-align: top;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 7px;
+    color: #42433F;
+    padding: 5px;
+    background-color: #C7C9BE;
+    border: 1px solid #929487;
+    border-radius: 4px;
+    cursor: pointer;
+    list-style-type: none;
+    position: relative;
+}
+
+#dropList a {
+    text-decoration: none;
+}
+
+button a {
+    font-size: 13px;
+    font-family: Montserrat;
+    font-weight: bold;    
+    text-decoration: none;
+}
+
+ul#nav {
+	width: 425px; margin: 0 auto; text-align: center; overflow: hidden; height: 100%;
+}
+	ul#nav li {
+		float: left; list-style: none; position: relative;
+	}
+
+    ul#nav li:hover {
+        background: #929487;
+    }
+
+		ul#nav li a {
+			display: block; width: 97px; height: 100%;
+			padding: 15px 0 0 0; margin: 0 0 0 5px;
+			font-size: 100%; text-transform: uppercase;
+			color: #42433F; text-shadow: 0 1px 3px #c4bda6; text-decoration: none;
+			/*background: url(images/label1.png) 0 -149px no-repeat;*/
+		}
+			/*ul#nav li a:hover {*/
+				/*background: url(images/label1.png) 0 -149px no-repeat;*/
+				/*color: #EEEEEE; text-shadow: 0 2px 3px #42433F;*/
+			/*}*/
+			/**/
+			/*ul#nav li a.js:hover {*/
+				/*background: url(images/label1.png) 0 -149px no-repeat;*/
+			/*}*/

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+                                 http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                                 http://www.springframework.org/schema/security
+                                 http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+    
+    <http auto-config="true" >
+        <intercept-url pattern='/profile' access='ROLE_USER, ROLE_SHOP_ADMIN, ROLE_MANAGER' />
+        <intercept-url pattern='/view/private/friends.jsp' access='ROLE_USER, ROLE_SHOP_ADMIN, ROLE_MANAGER' />
+        <intercept-url pattern='/view/private/messages.jsp' access='ROLE_USER, ROLE_SHOP_ADMIN, ROLE_MANAGER' />
+        <intercept-url pattern='/view/private/ROLE_MANAGER/**' access='ROLE_MANAGER' />
+        <intercept-url pattern='/view/private/ROLE_SHOP_ADMIN/**' access='ROLE_SHOP_ADMIN' />
+        <intercept-url pattern='/view/private/ROLE_USER/**' access='ROLE_USER' />
+        <form-login
+                login-page="/view/public/login.jsp"
+                authentication-success-handler-ref="authenticationSuccessHandler"
+                authentication-failure-url="/view/public/login.jsp?error=true"
+                username-parameter="username"
+                password-parameter="password" />
+        <logout delete-cookies="JSESSIONID, SPRING_SECURITY_REMEMBER_ME_COOKIE" success-handler-ref="logoutSuccessHandler"/>
+
+        <session-management invalid-session-url="/" session-fixation-protection="newSession">
+            <concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />
+        </session-management>
+
+        <!--<remember-me key="" />-->
+        <!--<remember-me key="SPRING_SECURITY_REMEMBER_ME_COOKIE" token-validity-seconds="864000" />-->
+    </http>
+
+    <authentication-manager>
+        <authentication-provider user-service-ref="userService"  />
+    </authentication-manager>
+
+    <beans:bean id="userService" class="com.foodservice.security.CustomUserDetailsService"/>
+    <beans:bean id="logoutSuccessHandler" class="com.foodservice.security.CustomLogoutSuccessHandler" />
+    <beans:bean id="authenticationSuccessHandler" class="com.foodservice.security.CustomAuthenticationSuccessHandler"/>
+</beans:beans>
