@@ -71,7 +71,7 @@ public class ShopDAO implements CRUD<Integer, Shop> {
 //        System.out.println("nameLike" + criterionParameters.get("nameLike"));
 //        System.out.println("minRating"+ criterionParameters.get("minRating"));
 //        System.out.println("maxRating"+ criterionParameters.get("maxRating"));
-//        System.out.println("countryLike"+ criterionParameters.get("countryLike"));
+//        System.out.println("countryLike"+ criterionParameters.get("regionLike"));
 //        System.out.println("cityLike"+ criterionParameters.get("cityLike"));
 //        System.out.println("streetLike"+ criterionParameters.get("streetLike"));
 //        System.out.println("buildingLike"+ criterionParameters.get("buildingLike"));
@@ -81,8 +81,8 @@ public class ShopDAO implements CRUD<Integer, Shop> {
         if (!(param = (String) criterionParameters.get("nameLike")).equals("")) {
             criteria.add(Restrictions.ilike("name", "%" + param + "%"));
         }
-        if (!(param = (String) criterionParameters.get("countryLike")).equals("")) {
-            criteria.add(Restrictions.ilike("location.country", "%" + param + "%"));
+        if (!(param = (String) criterionParameters.get("regionLike")).equals("")) {
+            criteria.add(Restrictions.ilike("location.region", "%" + param + "%"));
         }
         if (!(param = (String) criterionParameters.get("cityLike")).equals("")) {
             criteria.add(Restrictions.ilike("location.city", "%" + param + "%"));

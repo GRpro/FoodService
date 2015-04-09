@@ -18,9 +18,9 @@
         <div id="menu">
             <ul id="nav">
                 <li><a href="${root}/home">Home</a></li>
-                    <li><a href="${root}/service">Service</a></li>
-                    <li><a href="#">Work</a></li>
-                    <li><a href="#">About</a></li>
+                <li><a href="${root}/service">Service</a></li>
+                <li><a href="${root}/social">Social</a></li>
+                <li><a href="#">About</a></li>
             </ul>
         </div>
         <div class="search">
@@ -40,7 +40,7 @@
             <div id="profileHeader">
                 <div id="profileHeaderText">
                     <p id="lNameIconData" style="display: inline-block; vertical-align: top; width: 120px">
-                            <a href="${root}/view/private/redirect">
+                            <a href="${root}/profile">
                                 <sec:authentication property="principal.firstName" />
                                 <sec:authentication property="principal.lastName" />
                             </a>

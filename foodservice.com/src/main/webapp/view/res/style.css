@@ -284,7 +284,15 @@ header {
             vertical-align: top;
         }
 
-    #rightBar {
+        #userImage {
+            float: right;
+            height: 130px;
+            width: 130px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+    .rightBar {
         vertical-align: top;
         display: inline-block;
         width: 250px; 

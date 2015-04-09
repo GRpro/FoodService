@@ -1,7 +1,7 @@
 function ShopsByCriterion(webServiceRootUrl, appRootUrl) {
 
     var nameLike = $('#searchName').val();
-    //var countryLike = $('#searchCountry').val();
+    var regionLike = $('#searchRegion').val();
     var cityLike = $('#searchCity').val();
     var streetLike = $('#searchStreet').val();
     var buildingLike = $('#searchBuilding').val();
@@ -14,7 +14,7 @@ function ShopsByCriterion(webServiceRootUrl, appRootUrl) {
     if(nameLike != "") {url += ((count==0?"?":"&") + "nameLike=" + nameLike); count++}
     if(minRating != "") {url += ((count==0?"?":"&") + "minRating=" + minRating); count++}
     if(maxRating != "") {url += ((count==0?"?":"&") + "maxRating=" + maxRating); count++}
-    //if(countryLike != "") {url += ((count==0?"?":"&") + "countryLike=" + countryLike); count++}
+    if(regionLike != "") {url += ((count==0?"?":"&") + "regionLike=" + regionLike); count++}
     if(cityLike != "") {url += ((count==0?"?":"&") + "cityLike=" + cityLike); count++}
     if(streetLike != "") {url += ((count==0?"?":"&") + "streetLike=" + streetLike); count++}
     if(buildingLike != "") {url += ((count==0?"?":"&") + "buildingLike=" + buildingLike); count++}

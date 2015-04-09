@@ -47,6 +47,7 @@
                 <form>
                     <div class="searchText">
                         <p>Name</p>
+                        <p>Region</p>
                         <p>City</p>
                         <p>Street</p>
                         <p>Building</p>
@@ -54,6 +55,7 @@
                     </div>
                     <div class="searchInput">
                         <p><input id="searchName" type="text" placeholder="Enter name of shop"></p>
+                        <p><input id="searchRegion" type="text" placeholder="Enter region of shop"></p>
                         <p><input id="searchCity" type="text" placeholder="Enter city of shop"></p>
                         <p><input id="searchStreet" type="text" placeholder="Enter street of shop"></p>
                         <p><input id="searchBuilding" type="text" placeholder="Enter building of shop"></p>

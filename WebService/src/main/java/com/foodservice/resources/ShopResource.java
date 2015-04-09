@@ -1,6 +1,5 @@
 package com.foodservice.resources;
 
-import com.fasterxml.jackson.jaxrs.json.annotation.JSONP;
 import com.foodservice.exceptions.DuplicatedKeyException;
 import com.foodservice.entities.Shop;
 import com.foodservice.services.ShopService;
@@ -59,7 +58,7 @@ public class ShopResource {
     public Response getByManagerID(@QueryParam("shopAdminUserID") Integer shopAdminUserID) {
         try {
             List<Shop> shops = shopService.getByShopAdminID(shopAdminUserID);
-            return Response.ok(shopAdminUserID).status(Response.Status.OK).build();
+            return Response.ok(shops).status(Response.Status.OK).build();
         } catch (Exception e) {
             e.printStackTrace();
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
@@ -72,18 +71,18 @@ public class ShopResource {
     public JSONWithPadding getByCriterion(@DefaultValue("") @QueryParam("nameLike") String nameLike,
                                    @DefaultValue("0") @QueryParam("minRating") double minRating,
                                    @DefaultValue("5") @QueryParam("maxRating") double maxRating,
-                                   @DefaultValue("") @QueryParam("countryLike") String countryLike,
+                                   @DefaultValue("") @QueryParam("regionLike") String regionLike,
                                    @DefaultValue("") @QueryParam("cityLike") String cityLike,
                                    @DefaultValue("") @QueryParam("streetLike") String streetLike,
                                    @DefaultValue("") @QueryParam("buildingLike") String buildingLike,
                                    @DefaultValue("0") @QueryParam("firstResult") int firstResult,
-                                   @DefaultValue("0") @QueryParam("maxResults") int maxResults,
+                                   @DefaultValue("10000") @QueryParam("maxResults") int maxResults,
                                    @QueryParam("callback") String callback) {
         try {
 //        System.out.println("nameLike " + nameLike);
 //        System.out.println("minRating "+ minRating);
 //        System.out.println("maxRating "+ maxRating);
-//        System.out.println("countryLike "+ countryLike);
+//        System.out.println("regionLike "+ regionLike);
 //        System.out.println("cityLike "+ cityLike);
 //        System.out.println("streetLike "+ streetLike);
 //        System.out.println("buildingLike "+ buildingLike);
@@ -91,7 +90,7 @@ public class ShopResource {
             parameters.put("nameLike", nameLike);
             parameters.put("minRating", minRating);
             parameters.put("maxRating", maxRating);
-            parameters.put("countryLike", countryLike);
+            parameters.put("regionLike", regionLike);
             parameters.put("cityLike", cityLike);
             parameters.put("streetLike", streetLike);
             parameters.put("buildingLike", buildingLike);

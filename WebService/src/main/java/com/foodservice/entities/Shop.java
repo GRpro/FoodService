@@ -2,12 +2,13 @@ package com.foodservice.entities;
 
 import com.foodservice.entities.data.LazyClonable;
 import com.foodservice.entities.user.ShopAdminUser;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//@JsonIgnoreProperties(value = {"shopAdminUser", "photos"})
+@JsonIgnoreProperties(value = {"shopAdminUser", "photos"})
 @Entity
 @javax.persistence.Table(name = "shop")
 public class Shop implements LazyClonable<Shop> {

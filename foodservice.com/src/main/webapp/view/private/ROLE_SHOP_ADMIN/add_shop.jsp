@@ -9,13 +9,6 @@
     <title>New shop</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script>
     <script src="${root}/view/res/js/load/REST_client.js"></script>
-    <script>
-        $(function() {
-            $('#submitSearchShop').click(function (e) {
-                ShopCreate('<sec:authentication property="principal.id" />');
-            })
-        })
-    </script>
 </head>
 <body>
 
@@ -32,8 +25,8 @@
         <form action="${root}/register/shop"  method="post" enctype="multipart/form-data">
             <p>Shop name</p>
             <p><input id="shopName" name="name" type="text" placeholder="Your shop name" required></p>
-            <p>Country</p>
-            <p><input id="country" name="location.country" type="text" placeholder="Country of your shop" required></p>
+            <p>Region</p>
+            <p><input id="region" name="location.region" type="text" placeholder="Region of your shop" required></p>
             <p>City</p>
             <p><input id="city" name="location.city" type="text"  placeholder="City of your shop" required></p>
             <p>Street</p>

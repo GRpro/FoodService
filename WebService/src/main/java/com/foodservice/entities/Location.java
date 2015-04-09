@@ -8,7 +8,7 @@ public class Location {
     private String building;
     private String street;
     private String city;
-    private String country;
+    private String region;
     private String otherInfo;
 
 
@@ -36,12 +36,12 @@ public class Location {
         this.city = city;
     }
 
-    public String getCountry() {
-        return country;
+    public String getRegion() {
+        return region;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setRegion(String region) {
+        this.region = region;
     }
 
     public String getOtherInfo() {
@@ -58,7 +58,7 @@ public class Location {
                 "building='" + building + '\'' +
                 ", street='" + street + '\'' +
                 ", city='" + city + '\'' +
-                ", country='" + country + '\'' +
+                ", region='" + region + '\'' +
                 ", otherInfo='" + otherInfo + '\'' +
                 '}';
     }

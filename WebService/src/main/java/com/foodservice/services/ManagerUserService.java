@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE)
@@ -61,6 +62,11 @@ public class ManagerUserService implements UserService<Integer, ManagerUser> {
     public ManagerUser get(Integer key) {
         ManagerUser managerUser = managerUserDAO.get(key);
         return managerUser;
+    }
+
+    @Transactional(readOnly = true)
+    public List<ManagerUser> getByCriterion(Map<String, Object> criterionParameters) {
+        return managerUserDAO.getByCriterion(criterionParameters);
     }
 
     @Override

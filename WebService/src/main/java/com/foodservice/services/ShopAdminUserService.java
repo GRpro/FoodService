@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Map;
+
 @Service
 @Transactional(isolation = Isolation.SERIALIZABLE)
 public class ShopAdminUserService implements UserService<Integer, ShopAdminUser> {
@@ -42,6 +45,11 @@ public class ShopAdminUserService implements UserService<Integer, ShopAdminUser>
     public ShopAdminUser get(Integer key) {
         ShopAdminUser managerUser = shopAdminUserDAO.get(key);
         return managerUser;
+    }
+
+    @Transactional(readOnly = true)
+    public List<ShopAdminUser> getByCriterion(Map<String, Object> criterionParameters) {
+        return shopAdminUserDAO.getByCriterion(criterionParameters);
     }
 
     @Override

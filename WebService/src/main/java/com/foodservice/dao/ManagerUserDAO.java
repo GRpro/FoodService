@@ -1,18 +1,24 @@
 package com.foodservice.dao;
 
+import com.foodservice.entities.data.Gender;
+import com.foodservice.entities.data.SystemStatus;
 import com.foodservice.entities.friendship.Friendship;
 import com.foodservice.entities.user.ManagerUser;
+import com.foodservice.entities.user.SimpleUser;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 
 @Repository
@@ -47,6 +53,41 @@ public class ManagerUserDAO implements UserDAO<Integer, ManagerUser> {
         Criteria criteria = session.createCriteria(ManagerUser.class);
         if (firstResult != null) criteria.setFirstResult(firstResult);
         if (maxResults != null) criteria.setMaxResults(maxResults);
+        return criteria.list();
+    }
+
+    @Transactional(readOnly = true)
+    public List<ManagerUser> getByCriterion(Map<String, Object> criterionParameters) {
+        Session session = sessionFactory.getCurrentSession();
+        Criteria criteria = session.createCriteria(ManagerUser.class);
+
+        criteria.setReadOnly(true);
+        String param;
+        if (!(param = (String) criterionParameters.get("firstNameLike")).equals("")) {
+            criteria.add(Restrictions.ilike("firstName", "%" + param + "%"));
+        }
+        if (!(param = (String) criterionParameters.get("lastNameLike")).equals("")) {
+            criteria.add(Restrictions.ilike("lastName", "%" + param + "%"));
+        }
+        int temp;
+        if ((temp = (int) criterionParameters.get("ageMin")) != 0) {
+            Date date = new Date();
+            date.setYear(date.getYear() - temp);
+            criteria.add(Restrictions.gt("dob", date));
+        }
+        if ((temp = (int) criterionParameters.get("ageMax")) != 100) {
+            Date date = new Date();
+            date.setYear(date.getYear() - temp);
+            criteria.add(Restrictions.lt("dob", date));
+        }
+        Gender gender;
+        if ((gender = (Gender) criterionParameters.get("gender")) != null) {
+            criteria.add(Restrictions.eq("gender", gender));
+        }
+        SystemStatus systemStatus;
+        if ((systemStatus = (SystemStatus) criterionParameters.get("systemStatus")) != null) {
+            criteria.add(Restrictions.eq("systemStatus", systemStatus));
+        }
         return criteria.list();
     }
 

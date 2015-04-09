@@ -25,6 +25,13 @@ public class BasicController {
         return modelAndView;
     }
 
+    @RequestMapping(value = {"/social"}, method = RequestMethod.GET)
+    public ModelAndView social() {
+        ModelAndView modelAndView = new ModelAndView("public/social");
+        modelAndView.addObject("webServiceRootUrl", webserviceRootUrl);
+        return modelAndView;
+    }
+
 
     //*************************Sign up forms***************************//
 
