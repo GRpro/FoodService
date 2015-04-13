@@ -34,9 +34,6 @@ public class RegistrationController {
 
 
 
-
-
-
     //***********************************Users' registration************************//
 
 

@@ -1,12 +1,13 @@
 package com.foodservice.entities.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.foodservice.entities.data.LazyClonable;
 import com.foodservice.entities.Photo;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
 @Entity
 @javax.persistence.Table(name = "simple_user")
 public class SimpleUser extends User implements LazyClonable<SimpleUser> {

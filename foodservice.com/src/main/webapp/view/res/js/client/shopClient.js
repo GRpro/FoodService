@@ -22,8 +22,7 @@ function ShopsByCriterion(webServiceRootUrl, appRootUrl) {
     $.ajax({
         type: "GET",
         url: url,
-        dataType: 'jsonp',
-        jsonpCallback: 'callback',
+        dataType: 'json',
         //crossOrigin: true,
         success: function(results) {
             var bar = document.getElementById("centralBar");

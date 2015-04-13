@@ -37,6 +37,37 @@ public class SimpleUserService implements UserService<Integer, SimpleUser> {
         return simpleUser;
     }
 
+
+    @Transactional(readOnly = true)
+    public List<SimpleUser> getFriends(int id, Map<String, Object> criterionParameters) {
+        return simpleUserDAO.getFriends(id, criterionParameters);
+    }
+
+    @Transactional(readOnly = true)
+    public List<SimpleUser> getFollowers(int id, Map<String, Object> criterionParameters) {
+        return simpleUserDAO.getFollowers(id, criterionParameters);
+    }
+
+    @Transactional(readOnly = true)
+    public List<SimpleUser> getFollowedBy(int id, Map<String, Object> criterionParameters) {
+        return simpleUserDAO.getFollowedBy(id, criterionParameters);
+    }
+
+    @Transactional(readOnly = true)
+    public List<SimpleUser> getRequestedTo(int id, Map<String, Object> criterionParameters) {
+        return simpleUserDAO.getRequestedTo(id, criterionParameters);
+    }
+
+    @Transactional(readOnly = true)
+    public List<SimpleUser> getRequestedBy(int id, Map<String, Object> criterionParameters) {
+        return simpleUserDAO.getRequestedBy(id, criterionParameters);
+    }
+
+
+
+
+
+
     @Override
     @Transactional(readOnly = true)
     public SimpleUser getByEmail(String email) {

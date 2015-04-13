@@ -67,8 +67,8 @@ public class ShopResource {
     
     @GET
     @Path("/byCriterion")
-    @Produces("application/javascript")
-    public JSONWithPadding getByCriterion(@DefaultValue("") @QueryParam("nameLike") String nameLike,
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getByCriterion(@DefaultValue("") @QueryParam("nameLike") String nameLike,
                                    @DefaultValue("0") @QueryParam("minRating") double minRating,
                                    @DefaultValue("5") @QueryParam("maxRating") double maxRating,
                                    @DefaultValue("") @QueryParam("regionLike") String regionLike,
@@ -76,8 +76,7 @@ public class ShopResource {
                                    @DefaultValue("") @QueryParam("streetLike") String streetLike,
                                    @DefaultValue("") @QueryParam("buildingLike") String buildingLike,
                                    @DefaultValue("0") @QueryParam("firstResult") int firstResult,
-                                   @DefaultValue("10000") @QueryParam("maxResults") int maxResults,
-                                   @QueryParam("callback") String callback) {
+                                   @DefaultValue("10000") @QueryParam("maxResults") int maxResults) {
         try {
 //        System.out.println("nameLike " + nameLike);
 //        System.out.println("minRating "+ minRating);
@@ -98,12 +97,10 @@ public class ShopResource {
 //            for (int i = 0; i < result.size(); i++) {
 //                System.out.println(result.get(i));
 //            }
-            return new JSONWithPadding(new GenericEntity<List<Shop>>(result) {}, callback);
-//            return Response.ok(result).status(Response.Status.OK).build();
+            return Response.ok(result).status(Response.Status.OK).build();
         } catch (Exception e) {
             e.printStackTrace();
-//            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-            return null;
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
     }
 

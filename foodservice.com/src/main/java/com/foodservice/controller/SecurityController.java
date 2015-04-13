@@ -17,7 +17,7 @@ public class SecurityController {
         ModelAndView modelAndView = null;
         if (hasRole("ROLE_USER")) {
             System.out.println("Has role ROLE_USER");
-            modelAndView = new ModelAndView("private/ROLE_USER/profile");
+            modelAndView = new ModelAndView("redirect:/profile/user");
         }
         if (hasRole("ROLE_SHOP_ADMIN")) {
             System.out.println("Has role ROLE_SHOP_ADMIN");

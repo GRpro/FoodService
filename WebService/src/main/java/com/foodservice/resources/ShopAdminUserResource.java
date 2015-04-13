@@ -56,16 +56,15 @@ public class ShopAdminUserResource {
 
     @GET
     @Path("/byCriterion")
-    @Produces("application/javascript")
-    public JSONWithPadding getByCriterion(@DefaultValue("") @QueryParam("firstNameLike") String firstNameLike,
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getByCriterion(@DefaultValue("") @QueryParam("firstNameLike") String firstNameLike,
                                           @DefaultValue("") @QueryParam("lastNameLike") String lastNameLike,
                                           @DefaultValue("0") @QueryParam("minAge") Integer minAge,
                                           @DefaultValue("100") @QueryParam("maxAge") Integer maxAge,
                                           @DefaultValue("") @QueryParam("systemStatus") SystemStatus systemStatus,
                                           @DefaultValue("") @QueryParam("gender") Gender gender,
                                           @DefaultValue("0") @QueryParam("firstResult") int firstResult,
-                                          @DefaultValue("10000") @QueryParam("maxResults") int maxResults,
-                                          @QueryParam("callback") String callback) {
+                                          @DefaultValue("10000") @QueryParam("maxResults") int maxResults) {
         try {
             Map<String, Object> map = new HashMap<>();
             map.put("firstNameLike", firstNameLike);
@@ -75,10 +74,10 @@ public class ShopAdminUserResource {
             map.put("gender", gender);
             map.put("systemStatus", systemStatus);
             List<ShopAdminUser> shopAdminUsers = shopAdminUserService.getByCriterion(map);
-            return new JSONWithPadding(new GenericEntity<List<ShopAdminUser>>(shopAdminUsers) {}, callback);
+            return Response.ok(shopAdminUsers).status(Response.Status.OK).build();
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
     }
 

@@ -54,18 +54,167 @@ public class SimpleUserResource {
         }
     }
 
+    //*******************************friendship support-start*************************//
+
     @GET
-    @Path("/byCriterion")
-    @Produces("application/javascript")
-    public JSONWithPadding getByCriterion(@DefaultValue("") @QueryParam("firstNameLike") String firstNameLike,
+    @Path("/friendsOf")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getFriends(@QueryParam("id") int id,
+                               @DefaultValue("") @QueryParam("firstNameLike") String firstNameLike,
+                               @DefaultValue("") @QueryParam("lastNameLike") String lastNameLike,
+                               @QueryParam("minAge") Integer minAge,
+                               @QueryParam("maxAge") Integer maxAge,
+                               @DefaultValue("") @QueryParam("systemStatus") SystemStatus systemStatus,
+                               @DefaultValue("") @QueryParam("gender") Gender gender,
+                               @DefaultValue("0") @QueryParam("firstResult") int firstResult,
+                               @DefaultValue("10000") @QueryParam("maxResults") int maxResults) {
+        try {
+            Map<String, Object> map = new HashMap<>();
+            map.put("firstNameLike", firstNameLike);
+            map.put("lastNameLike", lastNameLike);
+            map.put("ageMax", minAge);
+            map.put("ageMin", maxAge);
+            map.put("gender", gender);
+            map.put("systemStatus", systemStatus);
+            List<SimpleUser> simpleUsers = simpleUserService.getFriends(id, map);
+            System.out.println("simpleUser's friends size: " + simpleUsers.size());
+            return Response.ok(simpleUsers).status(Response.Status.OK).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GET
+    @Path("/followersOf")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getFollowers(@QueryParam("id") int id,
+                                 @DefaultValue("") @QueryParam("firstNameLike") String firstNameLike,
+                                 @DefaultValue("") @QueryParam("lastNameLike") String lastNameLike,
+                                 @QueryParam("minAge") Integer minAge,
+                                 @QueryParam("maxAge") Integer maxAge,
+                                 @DefaultValue("") @QueryParam("systemStatus") SystemStatus systemStatus,
+                                 @DefaultValue("") @QueryParam("gender") Gender gender,
+                                 @DefaultValue("0") @QueryParam("firstResult") int firstResult,
+                                 @DefaultValue("10000") @QueryParam("maxResults") int maxResults) {
+        try {
+            Map<String, Object> map = new HashMap<>();
+            map.put("firstNameLike", firstNameLike);
+            map.put("lastNameLike", lastNameLike);
+            map.put("ageMax", minAge);
+            map.put("ageMin", maxAge);
+            map.put("gender", gender);
+            map.put("systemStatus", systemStatus);
+            List<SimpleUser> simpleUsers = simpleUserService.getFollowers(id, map);
+            return Response.ok(simpleUsers).status(Response.Status.OK).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GET
+    @Path("/followedBy")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getFollowedBy(@QueryParam("id") int id,
+                                  @DefaultValue("") @QueryParam("firstNameLike") String firstNameLike,
+                                  @DefaultValue("") @QueryParam("lastNameLike") String lastNameLike,
+                                  @QueryParam("minAge") Integer minAge,
+                                  @QueryParam("maxAge") Integer maxAge,
+                                  @DefaultValue("") @QueryParam("systemStatus") SystemStatus systemStatus,
+                                  @DefaultValue("") @QueryParam("gender") Gender gender,
+                                  @DefaultValue("0") @QueryParam("firstResult") int firstResult,
+                                  @DefaultValue("10000") @QueryParam("maxResults") int maxResults) {
+        try {
+            Map<String, Object> map = new HashMap<>();
+            map.put("firstNameLike", firstNameLike);
+            map.put("lastNameLike", lastNameLike);
+            map.put("ageMax", minAge);
+            map.put("ageMin", maxAge);
+            map.put("gender", gender);
+            map.put("systemStatus", systemStatus);
+            List<SimpleUser> simpleUsers = simpleUserService.getFollowedBy(id, map);
+            return Response.ok(simpleUsers).status(Response.Status.OK).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GET
+    @Path("/requestedTo")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getRequestedTo(@QueryParam("id") int id,
+                                   @DefaultValue("") @QueryParam("firstNameLike") String firstNameLike,
                                    @DefaultValue("") @QueryParam("lastNameLike") String lastNameLike,
-                                   @DefaultValue("0") @QueryParam("minAge") Integer minAge,
-                                   @DefaultValue("100") @QueryParam("maxAge") Integer maxAge,
+                                   @QueryParam("minAge") Integer minAge,
+                                   @QueryParam("maxAge") Integer maxAge,
                                    @DefaultValue("") @QueryParam("systemStatus") SystemStatus systemStatus,
                                    @DefaultValue("") @QueryParam("gender") Gender gender,
                                    @DefaultValue("0") @QueryParam("firstResult") int firstResult,
-                                   @DefaultValue("10000") @QueryParam("maxResults") int maxResults,
-                                   @QueryParam("callback") String callback) {
+                                   @DefaultValue("10000") @QueryParam("maxResults") int maxResults) {
+        try {
+            Map<String, Object> map = new HashMap<>();
+            map.put("firstNameLike", firstNameLike);
+            map.put("lastNameLike", lastNameLike);
+            map.put("ageMax", minAge);
+            map.put("ageMin", maxAge);
+            map.put("gender", gender);
+            map.put("systemStatus", systemStatus);
+            List<SimpleUser> simpleUsers = simpleUserService.getRequestedTo(id, map);
+            System.out.println("REQUESTED TO size: " + simpleUsers.size());
+            return Response.ok(simpleUsers).status(Response.Status.OK).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GET
+    @Path("/requestedBy")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getRequestedBy(@QueryParam("id") int id,
+                                   @DefaultValue("") @QueryParam("firstNameLike") String firstNameLike,
+                                   @DefaultValue("") @QueryParam("lastNameLike") String lastNameLike,
+                                   @QueryParam("minAge") Integer minAge,
+                                   @QueryParam("maxAge") Integer maxAge,
+                                   @DefaultValue("") @QueryParam("systemStatus") SystemStatus systemStatus,
+                                   @DefaultValue("") @QueryParam("gender") Gender gender,
+                                   @DefaultValue("0") @QueryParam("firstResult") int firstResult,
+                                   @DefaultValue("10000") @QueryParam("maxResults") int maxResults) {
+        try {
+            Map<String, Object> map = new HashMap<>();
+            map.put("firstNameLike", firstNameLike);
+            map.put("lastNameLike", lastNameLike);
+            map.put("ageMax", minAge);
+            map.put("ageMin", maxAge);
+            map.put("gender", gender);
+            map.put("systemStatus", systemStatus);
+            List<SimpleUser> simpleUsers = simpleUserService.getRequestedBy(id, map);
+            for (SimpleUser simpleUser :simpleUsers)
+                System.out.println(simpleUser);
+            System.out.println("REQUESTED BY size: " + simpleUsers.size());
+            return Response.ok(simpleUsers).status(Response.Status.OK).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+
+    //*******************************friendship support-end*************************//
+
+    @GET
+    @Path("/byCriterion")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getByCriterion(@DefaultValue("") @QueryParam("firstNameLike") String firstNameLike,
+                                   @DefaultValue("") @QueryParam("lastNameLike") String lastNameLike,
+                                   @QueryParam("minAge") Integer minAge,
+                                   @QueryParam("maxAge") Integer maxAge,
+                                   @DefaultValue("") @QueryParam("systemStatus") SystemStatus systemStatus,
+                                   @DefaultValue("") @QueryParam("gender") Gender gender,
+                                   @DefaultValue("0") @QueryParam("firstResult") int firstResult,
+                                   @DefaultValue("10000") @QueryParam("maxResults") int maxResults) {
         try {
             Map<String, Object> map = new HashMap<>();
             map.put("firstNameLike", firstNameLike);
@@ -75,10 +224,10 @@ public class SimpleUserResource {
             map.put("gender", gender);
             map.put("systemStatus", systemStatus);
             List<SimpleUser> simpleUsers = simpleUserService.getByCriterion(map);
-            return new JSONWithPadding(new GenericEntity<List<SimpleUser>>(simpleUsers) {}, callback);
+            return Response.ok(simpleUsers).status(Response.Status.OK).build();
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
     }
 

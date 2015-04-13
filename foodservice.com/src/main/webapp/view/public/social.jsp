@@ -84,7 +84,7 @@
         </form>
     </div>
     <div id="centralBar">
-        <h2>Shops</h2>
+        <h2>People</h2>
         <div id="resultUserList" ></div>
     </div>
     <div id="rightBar">

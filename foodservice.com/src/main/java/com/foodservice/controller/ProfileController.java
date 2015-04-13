@@ -3,6 +3,7 @@ package com.foodservice.controller;
 import com.foodservice.entities.Shop;
 import com.foodservice.entities.user.ManagerUser;
 import com.foodservice.entities.user.ShopAdminUser;
+import com.foodservice.entities.user.SimpleUser;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.GenericType;
@@ -76,6 +77,41 @@ public class ProfileController {
             modelAndView.addObject("message", "page cannot be loaded!");
             return modelAndView;
         }
+    }
+
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    public ModelAndView simpleUserProfile(Principal principal) {
+        ModelAndView modelAndView;
+        try {
+            modelAndView = new ModelAndView("private/ROLE_USER/profile");
+
+            //load simpleUser
+            Client client = Client.create();
+            WebResource webResource = client.resource(webserviceRootUrl + "/resources/users/simple/byEmail");
+            ClientResponse response = webResource
+                    .queryParam("email", String.valueOf(principal.getName()))
+                    .type(MediaType.APPLICATION_JSON)
+                    .get(ClientResponse.class);
+            if (response.getStatus() != Response.Status.OK.getStatusCode()) {
+                throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
+            }
+            SimpleUser simpleUser = response.getEntity(SimpleUser.class);
+            modelAndView.addObject("user", simpleUser);
+
+
+            return modelAndView;
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelAndView = new ModelAndView("public/result/on_result");
+            modelAndView.addObject("title", "error");
+            modelAndView.addObject("message", "page cannot be loaded!");
+            return modelAndView;
+        }
+    }
+
+    @RequestMapping(value = "/manager", method = RequestMethod.GET)
+    public ModelAndView managerUserProfile(Principal principal) {
+        return null;
     }
 
 }

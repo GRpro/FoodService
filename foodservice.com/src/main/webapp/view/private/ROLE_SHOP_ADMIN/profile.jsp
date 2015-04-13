@@ -41,7 +41,7 @@
         <h2><p>Profile</p></h2>
         <br>
         <div id="profileImage">
-            <img height="150px" src="${root}/content/photo/${user.photoId}"/>
+            <img height="150px" width="150px" src="${root}/content/photo/${user.photoId}"/>
         </div>
         <div id="profileText">
             <div id="profileTextKey">
@@ -51,6 +51,8 @@
                 <br>
                 <p>E-mail : </p>
                 <br>
+                <p>Gender : </p>
+                <br>
                 <p>About you : </p>
             </div>
             <div id="profileTextValue">
@@ -59,6 +61,8 @@
                 <p id="profileLName">${user.lastName}</p>
                 <br>
                 <p id="profileEmail">${user.email}</p>
+                <br>
+                <p id="profileGender">${user.gender}</p>
                 <br>
                 <p id="profileInfo">${user.personalData}</p>
             </div>

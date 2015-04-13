@@ -34,7 +34,7 @@ public abstract class User {
     private String personalData;
 
     @Transient
-    @OneToOne(targetEntity = Photo.class, fetch = FetchType.LAZY)
+    @OneToOne(targetEntity = Photo.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "photo_id", insertable = false, updatable = false)
     private Photo photo;
 

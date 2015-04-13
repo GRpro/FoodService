@@ -1,5 +1,3 @@
-<%@ page import="com.foodservice.security.CustomUserDetails" %>
-<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page session="true"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -8,10 +6,8 @@
     <meta charset="utf-8">
     <title>User profile</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script>
-    <%--<script src="${root}/view/res/js/scripts.js" type="text/javascript"></script>--%>
-    <script src="${root}/view/res/js/load/REST_client.js"></script>
 </head>
-<body onload="SimpleUserByID('<%= ((CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId()%>');">
+<body >
 
 <%--include header--%>
 <%@ include file="/view/public/common/header.jsp" %>
@@ -19,15 +15,15 @@
 <div id="content">
     <div id="leftBar">
         <form>
-            <button formaction="${root}/view/private/friends.jsp" class="list">Friends</button>
+            <button formaction="${root}/user/friends" class="list">Friends</button>
             <button formaction="${root}/view/private/messages.jsp" class="list">Messages</button>
         </form>
     </div>
     <div id="centralBar">
-        <h2><p>Profile</p></h2>
+        <h2>Profile</h2>
         <br>
         <div id="profileImage">
-            <img height="150px" src="${root}/view/res/images/photo.jpg"/>
+            <img height="150px" width="150px" src="${root}/content/photo/${user.photoId}"/>
         </div>
         <div id="profileText">
             <div id="profileTextKey">
@@ -35,18 +31,24 @@
                 <br>
                 <p>Last name : </p>
                 <br>
+                <p>DOB : </p>
+                <br>
                 <p>E-mail : </p>
                 <br>
-                <p>About you : </p>
+                <p>Gender : </p>
+                <br>
             </div>
             <div id="profileTextValue">
-                <p id="profileFName"></p>
+                <p id="profileFName">${user.firstName}</p>
                 <br>
-                <p id="profileLName"></p>
+                <p id="profileLName">${user.lastName}</p>
                 <br>
-                <p id="profileEmail"></p>
+                <p id="profileDOB">${user.dob}</p>
                 <br>
-                <p id="profileInfo"></p>
+                <p id="profileEmail">${user.email}</p>
+                <br>
+                <p id="profileGender">${user.gender}</p>
+                <br>
             </div>
             <%--<div id="profileMenu">--%>
                 <%--<form>--%>
@@ -59,17 +61,13 @@
                 <%--</form>--%>
             <%--</div>--%>
         </div>
+        Personal info:
+        <div>
+            <p id="profileInfo">${user.personalData}</p>
+        </div>
     </div>
     <div id="rightBar">
-        <h2>Friends</h2>
-        <br>
-        <input class="searchLine" style="width: 89%">
-        <button class="searchButton"><img src="${root}/view/res/images/ic_action_search.png" width="20px"></button>
-        <div style="text-align: center;">
-            <button style="width: 32%;">All friends</button>
-            <button style="width: 32%;">Online</button>
-            <button style="width: 32%;">Requests</button>
-        </div>
+
     </div>
 </div>
 

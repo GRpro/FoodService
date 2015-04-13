@@ -1,6 +1,7 @@
 package com.foodservice.controller;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,13 +26,21 @@ public class BasicController {
         return modelAndView;
     }
 
+
     @RequestMapping(value = {"/social"}, method = RequestMethod.GET)
-    public ModelAndView social() {
+    public ModelAndView goToPersonProfile() {
         ModelAndView modelAndView = new ModelAndView("public/social");
         modelAndView.addObject("webServiceRootUrl", webserviceRootUrl);
         return modelAndView;
     }
 
+    @Secured({"ROLE_USER"})
+    @RequestMapping(value = {"/user/friends"}, method = RequestMethod.GET)
+    public ModelAndView goToFriendsPage() {
+        ModelAndView modelAndView = new ModelAndView("private/ROLE_USER/friends");
+        modelAndView.addObject("webServiceRootUrl", webserviceRootUrl);
+        return modelAndView;
+    }
 
     //*************************Sign up forms***************************//
 

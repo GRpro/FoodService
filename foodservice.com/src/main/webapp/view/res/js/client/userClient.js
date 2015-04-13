@@ -21,19 +21,32 @@ function usersByCriterion(webServiceRootUrl, appRootUrl) {
     $.ajax({
         type: "GET",
         url: url,
-        dataType: 'jsonp',
-        jsonpCallback: 'callback',
+        dataType: 'json',
         success: function(results) {
             var bar = document.getElementById("centralBar");
 
             $.each(results, function() {
-
+                var linkpart;
+                switch (this.userType) {
+                    case "SIMPLE": {
+                        linkpart = "user";
+                        break;
+                    }
+                    case "SHOP_ADMIN": {
+                        linkpart = "shopAdmin";
+                        break;
+                    }
+                    case "MANAGER": {
+                        linkpart = "manager";
+                        break;
+                    }
+                }
                 $("#resultUserList").append(
                     $('<div id="shop">' +
-                    '<h3><a id="detailsLink" href="">' + this.firstName + ' ' + this.lastName + '</a></h3>' +
+                    '<h3><a id="detailsLink" href="' + appRootUrl + '/visit/' + linkpart + '/' + this.id + '">' + this.firstName + ' ' + this.lastName + '</a></h3>' +
                     '<div id="shopText">' +
                     '<p class="middleText">' + this.email + '</p>' +
-                    '<p><b>Description</b> : ' + this.systemStatus + '</p></div>' +
+                    '<p><b>Status</b> : ' + this.systemStatus + '</p></div>' +
                     '<div id="userImage">' +
                     '<img id="userImage" src="' + appRootUrl + "/content/photo/" + this.photoId + '"/></div>'));
             });

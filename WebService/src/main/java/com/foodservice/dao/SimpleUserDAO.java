@@ -3,11 +3,11 @@ package com.foodservice.dao;
 import com.foodservice.entities.data.Gender;
 import com.foodservice.entities.data.State;
 import com.foodservice.entities.data.SystemStatus;
+import com.foodservice.entities.friendship.Friendship;
 import com.foodservice.entities.user.SimpleUser;
-import org.hibernate.Criteria;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -56,38 +56,42 @@ public class SimpleUserDAO implements UserDAO<Integer, SimpleUser> {
         return criteria.list();
     }
 
-    @Transactional(readOnly = true)
-    public List<SimpleUser> getByCriterion(Map<String, Object> criterionParameters) {
-        Session session = sessionFactory.getCurrentSession();
-        Criteria criteria = session.createCriteria(SimpleUser.class);
-
-        criteria.setReadOnly(true);
+    private Criteria addRestrictions(Criteria criteria, Map<String, Object> criterionParameters) {
         String param;
         if (!(param = (String) criterionParameters.get("firstNameLike")).equals("")) {
-            criteria.add(Restrictions.ilike("firstName", "%" + param + "%"));
+            criteria.add(Restrictions.ilike("u.firstName", "%" + param + "%"));
         }
         if (!(param = (String) criterionParameters.get("lastNameLike")).equals("")) {
-            criteria.add(Restrictions.ilike("lastName", "%" + param + "%"));
+            criteria.add(Restrictions.ilike("u.lastName", "%" + param + "%"));
         }
-        int temp;
-        if ((temp = (int) criterionParameters.get("ageMin")) != 0) {
+        Integer temp;
+        if ((temp = (Integer) criterionParameters.get("ageMin")) != null) {
             Date date = new Date();
             date.setYear(date.getYear() - temp);
-            criteria.add(Restrictions.gt("dob", date));
+            criteria.add(Restrictions.gt("u.dob", date));
         }
-        if ((temp = (int) criterionParameters.get("ageMax")) != 100) {
+        if ((temp = (Integer) criterionParameters.get("ageMax")) != null) {
             Date date = new Date();
             date.setYear(date.getYear() - temp);
-            criteria.add(Restrictions.lt("dob", date));
+            criteria.add(Restrictions.lt("u.dob", date));
         }
         Gender gender;
         if ((gender = (Gender) criterionParameters.get("gender")) != null) {
-            criteria.add(Restrictions.eq("gender", gender));
+            criteria.add(Restrictions.eq("u.gender", gender));
         }
         SystemStatus systemStatus;
         if ((systemStatus = (SystemStatus) criterionParameters.get("systemStatus")) != null) {
-            criteria.add(Restrictions.eq("systemStatus", systemStatus));
+            criteria.add(Restrictions.eq("u.systemStatus", systemStatus));
         }
+        return criteria;
+    }
+
+    @Transactional(readOnly = true)
+    public List<SimpleUser> getByCriterion(Map<String, Object> criterionParameters) {
+        Session session = sessionFactory.getCurrentSession();
+        Criteria criteria = session.createCriteria(SimpleUser.class, "u");
+        criteria.setReadOnly(true);
+        criteria = addRestrictions(criteria, criterionParameters);
         return criteria.list();
     }
 
@@ -100,24 +104,98 @@ public class SimpleUserDAO implements UserDAO<Integer, SimpleUser> {
         return (SimpleUser) query.uniqueResult();
     }
 
+    //********************************friendship support-start**************************************//
+
     @Transactional(readOnly = true)
-    public List<SimpleUser> getRelativeUsersOf(int id, State state) {
+    public List<SimpleUser> getFriends(int id, Map<String, Object> criterionParameters) {
         Session session = sessionFactory.getCurrentSession();
-//        Criteria criteria1 = session.createCriteria(Friendship.class, "f");
-//        criteria1.setProjection(Property.forName("applicant").as("apl"))
-//                .add(Restrictions.eq("apl.acceptorId", id));
-//
-//        Criteria criteria2 = session.createCriteria(Friendship.class, "f");
-//        criteria1.setProjection(Property.forName("acceptor").as("ac"))
-//                .add(Restrictions.eq("ac.applicantId", id));
-        Query query1 = session.createQuery("select f.applicantId from Friendship f where f.acceptorId = :id and f.state = :state");
-        Query query2 = session.createQuery("select f.acceptorId from Friendship f where f.applicantId = :id and f.state = :state");
-        query1.setParameter("id", id);
-        query2.setParameter("id", id);
-        List<SimpleUser> users = query1.list();
-        users.addAll(query2.list());
-        return users;
+        Criteria criteria1 = session.createCriteria(Friendship.class, "f");
+        criteria1.setProjection(Projections.property("f.applicant"));
+        criteria1.createAlias("f.applicant", "u");
+        criteria1.add(Restrictions.and(Restrictions.eq("f.acceptorId", id), Restrictions.eq("f.state", State.ACCEPTED)));
+        criteria1 = addRestrictions(criteria1, criterionParameters);
+
+        Criteria criteria2 = session.createCriteria(Friendship.class, "f");
+        criteria2.setProjection(Projections.property("f.acceptor"));
+        criteria2.createAlias("f.acceptor", "u");
+        criteria2.add(Restrictions.and(Restrictions.eq("f.applicantId", id), Restrictions.eq("f.state", State.ACCEPTED)));
+        criteria2 = addRestrictions(criteria2, criterionParameters);
+
+        List<SimpleUser> simpleUsers1 = criteria1.list();
+        List<SimpleUser> simpleUsers2 = criteria2.list();
+        simpleUsers1.addAll(simpleUsers2);
+        for (SimpleUser simpleUser :simpleUsers1)
+            System.out.println(simpleUser);
+        return simpleUsers1;
     }
+
+    @Transactional(readOnly = true)
+    public List<SimpleUser> getFollowers(int id, Map<String, Object> criterionParameters) {
+        Session session = sessionFactory.getCurrentSession();
+        Criteria criteria = session.createCriteria(Friendship.class, "f");
+        criteria.setProjection(Projections.property("f.applicant"));
+        criteria.createAlias("f.applicant", "u");
+        criteria.add(Restrictions.eq("f.acceptorId", id));
+        criteria.add(Restrictions.eq("f.state", State.REFUSED));
+
+        criteria = addRestrictions(criteria, criterionParameters);
+        List<SimpleUser> simpleUsers = criteria.list();
+        for (SimpleUser simpleUser :simpleUsers)
+            System.out.println(simpleUser);
+        return simpleUsers;
+    }
+
+    @Transactional(readOnly = true)
+    public List<SimpleUser> getFollowedBy(int id, Map<String, Object> criterionParameters) {
+        Session session = sessionFactory.getCurrentSession();
+        Criteria criteria = session.createCriteria(Friendship.class, "f");
+        criteria.setProjection(Projections.property("f.acceptor"));
+        criteria.createAlias("f.acceptor", "u");
+        criteria.add(Restrictions.and(Restrictions.eq("f.applicantId", id), Restrictions.eq("f.state", State.REFUSED)));
+
+        criteria = addRestrictions(criteria, criterionParameters);
+        List<SimpleUser> simpleUsers = criteria.list();
+        for (SimpleUser simpleUser :simpleUsers)
+            System.out.println(simpleUser);
+        return simpleUsers;
+    }
+
+    @Transactional(readOnly = true)
+    public List<SimpleUser> getRequestedTo(int id, Map<String, Object> criterionParameters) {
+        Session session = sessionFactory.getCurrentSession();
+        Criteria criteria = session.createCriteria(Friendship.class, "f");
+        criteria.setProjection(Projections.property("f.applicant"));
+        criteria.createAlias("f.applicant", "u");
+        criteria.add(Restrictions.and(Restrictions.eq("f.acceptorId", id), Restrictions.eq("f.state", State.NEW)));
+
+        criteria = addRestrictions(criteria, criterionParameters);
+        List<SimpleUser> simpleUsers = criteria.list();
+        for (SimpleUser simpleUser :simpleUsers)
+            System.out.println(simpleUser);
+        return simpleUsers;
+    }
+
+    @Transactional(readOnly = true)
+    public List<SimpleUser> getRequestedBy(int id, Map<String, Object> criterionParameters) {
+        Session session = sessionFactory.getCurrentSession();
+        Criteria criteria = session.createCriteria(Friendship.class, "f");
+        criteria.setProjection(Projections.property("f.acceptor"));
+        criteria.createAlias("f.acceptor", "u");
+        System.out.println(id);
+        criteria.add(Restrictions.eq("f.applicantId", id));
+        criteria.add(Restrictions.eq("f.state", State.NEW));
+
+        criteria = addRestrictions(criteria, criterionParameters);
+//        criteria.setFetchMode("f.acceptor", FetchMode.JOIN);
+//        criteria.setFetchMode("u.photos", FetchMode.JOIN);
+        List<SimpleUser> simpleUsers = criteria.list();
+        for (SimpleUser simpleUser :simpleUsers)
+            System.out.println(simpleUser);
+        return simpleUsers;
+    }
+
+    //********************************friendship support-end**************************************//
+
 
 
     @Override
