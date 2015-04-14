@@ -1,0 +1,12 @@
+/home/grigoriy/projects/FoodService/foodservice.com/src/main/java/com/foodservice/security/CustomUserDetailsService.java
+/home/grigoriy/projects/FoodService/foodservice.com/src/main/java/com/foodservice/controller/ProfileController.java
+/home/grigoriy/projects/FoodService/foodservice.com/src/main/java/com/foodservice/security/CustomUserDetails.java
+/home/grigoriy/projects/FoodService/foodservice.com/src/main/java/com/foodservice/security/CustomLogoutSuccessHandler.java
+/home/grigoriy/projects/FoodService/foodservice.com/src/main/java/com/foodservice/controller/RegistrationController.java
+/home/grigoriy/projects/FoodService/foodservice.com/src/main/java/com/foodservice/security/CustomAuthenticationSuccessHandler.java
+/home/grigoriy/projects/FoodService/foodservice.com/src/main/java/com/foodservice/security/utils/SecurityUtil.java
+/home/grigoriy/projects/FoodService/foodservice.com/src/main/java/com/foodservice/sessions/SessionCounter.java
+/home/grigoriy/projects/FoodService/foodservice.com/src/main/java/com/foodservice/controller/SecurityController.java
+/home/grigoriy/projects/FoodService/foodservice.com/src/main/java/com/foodservice/controller/ContentController.java
+/home/grigoriy/projects/FoodService/foodservice.com/src/main/java/com/foodservice/controller/BasicController.java
+/home/grigoriy/projects/FoodService/foodservice.com/src/main/java/com/foodservice/controller/SocialController.java

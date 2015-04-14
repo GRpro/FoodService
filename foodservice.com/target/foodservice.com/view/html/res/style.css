@@ -1,0 +1,350 @@
+
+body, div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd, img, form, fieldset, input, textarea, blockquote {
+    font-family: Montserrat;
+	margin: 0; padding: 0; border: 0;
+}
+
+@font-face {
+    font-family: Abeezee;
+    src: url(fonts/Abeezee/abeezee-regular.ttf);
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url(fonts/Montserrat/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-Bold;
+    src: url(fonts/Montserrat/Montserrat-Bold.ttf);
+}
+
+body {
+    background: #EEEEEE;
+}
+
+footer {
+    width: 100%;
+    background: #C7C9BE;
+    height: 60px;
+    margin-bottom: 0 auto;
+    color: #42433F;
+    text-align: center;
+    border-top: 1px solid #929487;
+}
+
+header {
+    vertical-align: top;
+    width: 100%;
+    background: #C7C9BE;
+    height: 70px; 
+    text-align: center;
+    border-bottom: 1px solid #929487;
+}
+
+    #logo {
+        vertical-align: top;
+        display: inline-block;
+        margin-right: 130px;
+        height: 100%;
+        width: auto;
+    }
+
+    .logoLink {
+        text-decoration: none;
+        margin-top: 12px;
+        font-size: 28px;
+        font-weight: bold;
+/*        display: inline-block;*/
+    }
+    
+    .logoLink a {
+        font-family: Abeezee;
+        color: #42433F;
+        text-decoration: none;
+    }
+
+    .logoLink a:hover {
+        color: #EEEEEE;
+    }
+
+    #menu {
+        vertical-align: top;
+        display: inline-block;
+        width: 700px;
+        height: 100%;
+    }
+
+    #profileHeader {
+        vertical-align: top;
+        display: inline-block;
+        margin-top: 18px;
+        height: auto;
+        width: auto;
+        font-size: 14px;
+        margin-left: 150px;
+/*        margin-left: 12px;*/
+    }
+
+        #profileHeaderText {
+            display: inline-block;    
+            width: 174px;
+        }
+
+#content {
+    top: 150px;
+    margin: 0 auto;
+    width: 100%;
+    height: 533px;
+    font-size: 18px;
+}
+
+    #leftBar {
+        vertical-align: top;
+        display: inline-block;
+        margin-left: 25px;
+        width: 250px; 
+        height: 385px;
+        padding: 20px 20px 35px 20px; 
+        background: #FFFBED;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        border: 1px solid;
+    }
+
+    #centralBar {
+        vertical-align: top;
+        display: inline-block;
+        margin-left: 20px;
+        margin-right: 20px;
+        width: 640px; 
+        height: auto;
+        padding: 15px 20px 35px 20px;
+        font: bold;
+        background: #FFFBED;
+        border-radius: 15px;
+        border-color: #000000;
+        border: 1px solid;
+    }
+
+    #rightBar {
+        vertical-align: top;
+        display: inline-block;
+        width: 250px; 
+        height: 385px;
+        padding: 20px 20px 35px 20px;
+        background: #FFFBED;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border-color: #000000;
+        border: 1px solid;
+    }
+
+#shopContainer {
+	vertical-align: top;
+    display: inline-block;
+	width: 100%; 
+	height: 100%;
+}
+
+#shopRight {
+	vertical-align: top;
+    display: inline-block;
+    height: 20px;
+    width: 85%;
+    margin-bottom: 20px;
+    padding: 16px 10px 35px 20px;
+    font-size: 14px;
+	background-color: burlywood;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border: 3px solid darkred;
+}
+
+#shopRight .shopPhoto {
+    vertical-align: top;
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+}
+
+#shopRight .shopText {
+    vertical-align: top;
+    display: inline-block;
+    height: 40px;
+    width: 168px;
+}
+
+a.shopRightName {
+    font-size: 20px;
+    color:firebrick;
+}
+
+#shop {
+    vertical-align: top;
+    margin-left: 20px;
+    margin-top: 20px;
+    width: 560px;
+	height: auto;
+	padding: 15px 20px 35px 20px;
+    font: bold;
+    display: inline-block;
+    background-color: bisque;
+    border-radius: 20px;
+    border-color: darkred;
+    border-width: 2px;
+    border-style: solid;
+}
+
+#shopText {
+    width: 400px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#profileImage {
+    height: 150px;
+    width: 150px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#profileText {
+    width: auto;
+    height: auto;
+    margin-top: -155px;
+    margin-left: 160px;
+}
+
+#profileTextKey {
+    width: 120px;
+    height: auto;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#profileTextValue {
+    width: 280px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#profileMenu {;
+    width: 55px;
+    height: auto;
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+}
+
+p.smallText {
+    font-size: 12px;
+}
+
+a {
+    color: #42433F;
+}
+
+h2 {
+    color: darkred;
+    text-shadow: 0 1px 3px #c4bda6;
+	font-size: 25px;
+}
+
+h3 {
+    color: darkred;
+}
+
+input {
+    font-size: 16px;
+    border-width: 1px;
+    border-style: dotted;
+    margin-bottom: 7px;
+}
+
+input.photo {
+    font-size: px;
+    border-width: 1px;
+    border-style: dotted;
+    margin-bottom: 7px;
+}
+
+button {
+    vertical-align: top;
+    display: inline-block;
+    font: bold 13px Sans-Serif;
+    margin-bottom: 7px;
+    color: #42433F;
+    padding: 5px;
+    background-color: #C7C9BE;
+    border: 1px solid #929487;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button.imageButton {
+    background-color: darksalmon; 
+    width: auto;
+    height: auto;
+    padding: 0px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: firebrick;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.imageButton:hover {
+    background-color: firebrick;
+}
+
+#dropList {
+}
+
+#dropList li {
+/*    display: inline-block;*/
+    vertical-align: top;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 7px;
+    color: #42433F;
+    padding: 5px;
+    background-color: #C7C9BE;
+    border: 1px solid #929487;
+    border-radius: 4px;
+    cursor: pointer;
+    list-style-type: none;
+}
+
+#dropList li a {
+    text-decoration: none;
+}
+
+input.search {
+    border: 1px solid;
+    border-radius: 30px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+ul#nav {
+	width: 700px; margin: 0 auto; text-align: center; overflow: hidden; height: 150px;
+}
+	ul#nav li {
+		float: left; list-style: none; 
+	}
+		ul#nav li a {
+			display: block; width: 97px; height: 44%; 
+			padding: 23px 0 0 0; margin: 0 0px 0 5px;
+			font-size: 100%; text-transform: uppercase;
+			color: #42433F; text-shadow: 0 1px 3px #c4bda6; text-decoration: none;
+			background: url(images/label1.png) 0 -149px no-repeat;
+		}
+			ul#nav li a:hover {
+				background: url(images/label1.png) 0 -149px no-repeat;
+				color: #EEEEEE; text-shadow: 0 2px 3px #42433F;
+			}
+			
+			ul#nav li a.js:hover {
+				background: url(images/label1.png) 0 -149px no-repeat;
+			}

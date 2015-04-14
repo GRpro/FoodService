@@ -1,11 +1,21 @@
 FoodService
 ===========
 
+Project consists of two modules: RESTful service and Web-Site
+It is flexible because model is separated from presentation layer.
+Module 
+
 **Used technologies:**
-* Spring 
+* Spring
 * Hibernate, JPA
 * Jersey
 * JavaScript (JQuery)
+
+To run project you need do the following:
+* Web site has a dependency of jar file WebService. So you need go to pom.xml
+  in WebService module
+
+
 
 **Run project steps:**
 * Create new database for FoodService

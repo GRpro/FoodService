@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8">
+		<title>Register</title>
+		<link href="res/style.css" rel="stylesheet" type="text/css">
+
+        <!--for posting data-->
+        <!--<script src="js/lib/JQuery-2.1.1.js"></script>-->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script>
+        <script src="res/js/register/SimpleUserPost.js"></script>
+        <script src="res/js/animate-bg.js" type="text/javascript"></script>
+	    <script src="res/js/scripts.js" type="text/javascript"></script>
+
+	</head>
+	<body>
+        <div id="header">
+            <div id="logo">
+                <a href="public/index.jsp"><img src="res/images/foodservice.png"></a>
+            </div>
+            <div id="menu">
+                <ul id="nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="${root}/view/public/service.jsp">Service</a></li>
+                    <li><a href="#">Work</a></li>
+                    <li><a href="private/redirect">Profile</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="content">   
+            <div id="leftbar">
+                <p>Leftbar</p>
+            </div>
+            <div id="centralbar">
+                <h2>Sign up as user</h2>
+                <br>
+                <form action="private/redirect">
+                    <p>First name</p>
+                    <p><input id="firstName"  type="text" placeholder="Your first name" required></p>
+                    <p>Last name</p>
+                    <p><input id="lastName"  type="text" placeholder="Your last name" required></p>
+                    <p>E-mail</p>
+                    <p><input id="email"  type="email" placeholder="Your e-mail" required></p>
+                    <p>Password</p>
+                    <p><input id="password" onchange="checkPasswords()" type="password" placeholder="Your password" required></p>
+                    <p><input id="passwordconfirm" onchange="checkPasswords()" type="password" placeholder="Confirm password" required></p>
+                    <p>About you</p>
+                    <p><input id="personalData"  type="text" placeholder="Tell some words about you"></p>
+                    <button id="submitSimpleUserForm" type="submit"><p>Send</p></button>
+                </form>    
+            </div>
+            <div id="rightbar">
+                <p>Rightbar</p>
+            </div>
+        </div>
+	</body>
+</html>
