@@ -1,5 +1,3 @@
-<%@ page import="com.foodservice.security.CustomUserDetails" %>
-<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page session="true"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -22,7 +20,7 @@
         </form>
     </div>
     <div id="centralBar">
-        <h2><p>Profile</p></h2>
+        <h2>Profile</h2>
         <br>
         <div id="profileImage">
             <img height="150px" width="150px" src="${root}/content/photo/${user.photoId}"/>

@@ -19,14 +19,15 @@ To run project you need run its modules WebService and Web-Site:
 * Package project with maven
 * Deploy it with Tomcat using maven plugin: mvn tomcat7:run
 
-Now WebService is up and running with root url http://host:port/WebService/resources
+Now WebService is up and running with root url http://host:port/WebService
 
 2) Make foodservice.com up and running:
 * Web site has a dependency of jar file WebService. So you need add this dependency into
   local maven repository.
   Go to pom.xml in WebService module and change packaging from war to jar. After that do
-  install command in RESTful WebService module. Change packaging at it was at first (from jar to war).
-  Now if execution of install command was successful you have a new dependency of WebService module
+  install command in RESTful WebService module. Change packaging as it was at first (from jar to war).
+  Do install command on the main module FoodService.
+  Now if execution of both install commands was successful you have a new dependency of WebService module
   in your local repo.
 * Modules of the project can be run on different hosts. In the distributed mode(When
   WebService and Web-Site runs on different hosts) you need to specify
