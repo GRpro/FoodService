@@ -8,6 +8,9 @@ import com.foodservice.entities.data.UserType;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * Abstract user entity.
+ */
 @Entity
 @Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
 public abstract class User {
@@ -16,20 +19,43 @@ public abstract class User {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
 
+    /**
+     * First user's name
+     */
     private String firstName;
+
+    /**
+     * Last user's name
+     */
     private String lastName;
 
+    /**
+     * Date of birth
+     */
     @Temporal(TemporalType.DATE)
     private Date dob;
 
+    /**
+     * User's gender
+     */
     @Enumerated(EnumType.STRING)
     private Gender gender;
-    
+
+    /**
+     * User's email
+     */
     @Column(unique = true, nullable = false)
     private String email;
+
+    /**
+     * User's password
+     */
     @Column(nullable = false)
     private String password;
 
+    /**
+     * User's personal data in simple text format
+     */
     @Lob
     private String personalData;
 
@@ -42,10 +68,14 @@ public abstract class User {
     @Column(name = "photo_id")
     private Integer photoId;
 
+    /**
+     * Meta data field which determines user's type
+     */
     @Enumerated(EnumType.STRING)
     private UserType userType;
+
     /**
-     * Determins the system status of current user
+     * Determines the system status of current user
      */
     @Enumerated(EnumType.STRING)
     private SystemStatus systemStatus;
@@ -139,13 +169,13 @@ public abstract class User {
         this.lastName = lastName;
     }
 
-//    public Photo getPhoto() {
-//        return photo;
-//    }
-//
-//    public void setPhoto(Photo photo) {
-//        this.photo = photo;
-//    }
+    public Photo getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Photo photo) {
+        this.photo = photo;
+    }
 
     @Override
     public boolean equals(Object o) {

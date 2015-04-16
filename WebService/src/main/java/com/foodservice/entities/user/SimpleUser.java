@@ -7,11 +7,18 @@ import com.foodservice.entities.Photo;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * Abstraction for SimpleUser
+ */
 @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
 @Entity
 @javax.persistence.Table(name = "simple_user")
 public class SimpleUser extends User implements LazyClonable<SimpleUser> {
 
+    /**
+     * Photo
+     */
     @OneToMany(targetEntity = Photo.class, fetch = FetchType.EAGER)
     @JoinTable(name = "simple_user_photo",
             joinColumns = @JoinColumn(name = "photo_id"),

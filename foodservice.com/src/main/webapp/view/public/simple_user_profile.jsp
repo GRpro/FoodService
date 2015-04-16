@@ -69,7 +69,6 @@
                                     </form>
                                 </c:if>
                             </c:when>
-
                         </c:choose>
                     </c:if>
                     <c:if test="${friendship == null}">
